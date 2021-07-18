@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+<h1 class="header">{{title}}</h1>
+
+<div class="movie-container  ">
+
+    {% for movie in movies %}
+
+
+
+
+    <div class="movie-items">
+
+        <a href="{% url 'detail' movie.id %}"><img src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                class="card-img-top" alt=""></a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+<div class="row">
+    <div class="col">
+        <form action="{% url 'catMovie'  currentcategory %}" method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary m-3 btn-lg" type="submit">önceki </button>
+
+            <div class="form-group">
+                <label for="pagenumber"></label>
+                <input type="hidden" class="form-control" name="pagenumber" value="{{pagenumber}}">
+            </div>
+
+            <div class="form-group">
+
+                <label for="type"></label>
+                <input type="hidden" name="type" value="önceki" class="form-control ">
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="col">
+
+        <form action="{% url 'catMovie' currentcategory %}" method="post">
+            <button class="btn btn-primary float-right m-3 btn-lg" type="submit">sonraki </button>
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="type"></label>
+                <input type="hidden" name="type" value="sonraki">
+            </div>
+
+            <div class="form-group">
+                <label for="pagenumber"></label>
+                <input type="hidden" class="form-control" name="pagenumber" value="{{pagenumber}}">
+            </div>
+
+        </form>
+
+    </div>
+
+    {% endblock content%}

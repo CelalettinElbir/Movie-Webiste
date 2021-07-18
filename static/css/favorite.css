@@ -1,0 +1,22 @@
+.movie-container{
+
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.movie-item{
+
+    margin: 20px;
+
+
+}
+
+img{
+
+    height: 400px;
+    width: 300px;
+
+}
