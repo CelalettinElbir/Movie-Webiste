@@ -1,8 +1,8 @@
-
+import os
 import requests
 class moviedb:
     def __init__(self):
-        self.apıKey = "1cc4442ea0cb5d3ed0274efd36cedd94"
+        self.apıKey = os.environ.get("HEAVENAPI")
         self.url = "https://api.themoviedb.org/3"
 
 
