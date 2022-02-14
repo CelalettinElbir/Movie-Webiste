@@ -1,0 +1,38 @@
+#navbar {
+    background-color: #8e44ad;
+}
+
+.movie-container {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.movie-items {
+    flex: 1 1 160px;
+    margin: 20px;
+    transition: all, 2s;
+}
+
+.movie-items:hover {
+    flex: 1 1 200px;
+    border: transparent 0px;
+    opacity: 0.5;
+}
+
+.header {
+    font-family: 'Cinzel', serif;
+    color: #9a2cc9;
+    text-align: center;
+}
+
+#categories a {
+    background-color: #8e44ad;
+    margin: 5px;
+}
+
+#categories a:hover {
+    background-color: #9a2cc9;
+}

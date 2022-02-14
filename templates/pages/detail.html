@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-sm-4"><img src="https://image.tmdb.org/t/p/w400/{{detail.poster_path}}" class="img-fluid"
+                alt=""></div>
+        <div class="col-sm-8 movie-info">
+
+            <h1 class="header">{{detail.title}} </h1>
+
+
+            <h5>
+                kategoriler :
+                {% for genres in detail.genres %}
+                {{genres.name}},
+                {% endfor %}
+            </h5>
+
+            <h5>Çıkış Tarihi: {{detail.release_date}} </h5>
+            <h5>Orjinal başlık: {{detail.original_title}} </h5>
+            <h5>film konusu: {{detail.overview}} </h5>
+            <h5>film süresi : {{detail.runtime}} dakika </h5>
+
+            <h5>oylama sayısı :{{detail.vote_count}} </h5>
+            <h5>ortalama puan:{{detail.vote_average}}</h5>
+
+
+
+            <form action="{% url 'favorite'%}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="movie_id"></label>
+                    <input type="hidden" class="form-control" value="{{detail.id}}" name="movie_id">
+
+                </div>
+                <div class="form-group">
+
+                    <label for="path"></label>
+                    <input type="hidden" class="form-control" value={{detail.poster_path}} name="path">
+
+                </div>
+                <div class="form-group">
+                    <label for="title"></label>
+                    <input type="hidden" class="form-control" value={{detail.title}} name="title">
+
+                </div>
+
+
+                <button type="submit" class="fav-btn">favorileri ekle</button>
+
+            </form>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    {% endblock %}
