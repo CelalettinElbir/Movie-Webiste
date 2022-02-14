@@ -75,16 +75,20 @@ def addFavorite(request):
         title = request.POST["title"]
 
         print(movie_id, path, title)
+        if request.user.is_authenticated:
+            if (movie_infos.objects.filter(movieıd=movie_id, user=User.objects.get(username=request.user.username)).exists()) == False:
 
-        if (movie_infos.objects.filter(movieıd=movie_id, user=User.objects.get(username=request.user.username)).exists()) == False:
+                print("aynı film değil devamke")
 
-            print("aynı film değil devamke")
+                obj = movie_infos.objects.create(
+                    movieıd=movie_id, path=path, title=title, user=User.objects.get(username=request.user.username))
+                obj.save()
+                messages.add_message(request, messages.SUCCESS, f'{title} filmi favorilere eklendi ')
+            return redirect("index")
+        else:
+            messages.add_message(request,messages.WARNING,message='favorilere eklemek için ilk olarak kayıt olmalısınız!')
+            return redirect("register")
 
-            obj = movie_infos.objects.create(
-                movieıd=movie_id, path=path, title=title, user=User.objects.get(username=request.user.username))
-            obj.save()
-            messages.add_message(request, messages.SUCCESS, f'{title} filmi favorilere eklendi ')
-        return redirect("index")
     context = {
 
         'movies': movie_infos.objects.filter(user=request.user.id),

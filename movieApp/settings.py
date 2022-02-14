@@ -28,6 +28,7 @@ SECRET_KEY =os.environ.get('SECRET_KEY_MOVIE')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (os.environ.get("DEBUG") == "True")
 
+
 ALLOWED_HOSTS = ["movieheaven.herokuapp.com"]
 
 
@@ -128,5 +129,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"), 
 )
 
-
+# eklemen önemli
 django_heroku.settings(locals())

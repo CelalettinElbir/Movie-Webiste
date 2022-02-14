@@ -29,8 +29,6 @@ def index(request):
         "pagenumber": pagenumber,
         "movies": trendMovies,
         "categories": categories,
-
-
     }
 
     return render(request, "pages/index.html", context)
